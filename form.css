@@ -1,0 +1,61 @@
+.title-small {
+  font-size: 20px;
+}
+
+body {
+  background: linear-gradient(90deg, rgb(18, 4, 36), rgb(76, 64, 130));
+  color: white; /* Adjust text color for better readability */
+  font-family: Arial, sans-serif; /* Specify a fallback font */
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background for inputs */
+  color: white; /* Adjust text color for better readability */
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Center the button */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+img {
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin: 20px auto; /* Center the image and provide some margin */
+}

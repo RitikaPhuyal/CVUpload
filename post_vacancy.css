@@ -1,0 +1,106 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgb(18, 4, 36), rgb(76, 64, 130));
+    font-family: Arial, sans-serif;
+    color: #fff; /* Set font color to white */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto; /* Center the container vertically */
+    padding: 20px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1); /* Soft shadow effect */
+}
+/* Style for the "Add Job" button */
+button[name="add_job"] {
+    background-color: #28a745; /* Green color for add job button */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[name="add_job"]:hover {
+    background-color: #218838; /* Darker shade of green on hover */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1); /* Soft shadow effect */
+    margin-bottom: 20px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+
+/* styles.css */
+
+/* Style for the update button */
+button[name="edit_job"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Style for the delete button */
+button[name="delete_job"] {
+    background-color: #dc3545; /* Red color for delete button */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+
+/* Style for the description and job name box */
+input[name="job_title"], textarea[name="job_description"] {
+    width: calc(50% - 5px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+textarea[name="job_description"] {
+    height: 150px; /* Increase the height of the description box */
+    width: calc(100% - 22px); /* Increase the width of the description box */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for the update and delete button container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}

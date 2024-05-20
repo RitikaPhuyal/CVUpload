@@ -1,0 +1,57 @@
+*{
+margin: 0px;
+
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100vh;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid #341e71;
+  padding: 9px;
+  text-align: left;
+}
+
+table th {
+  background-color: #8c859d;
+}
+
+table tr:nth-child(even) {
+  background-color: #32376a;
+  color: white;
+}
+
+table tr:hover {
+  background-color: #09632c;
+  color: white;
+  cursor: pointer;
+}
+
+table td img {
+  max-width: 200px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+table td img:hover {
+  transform: scale(1.1);
+}
+
+.actions{
+  display: flex;
+  height: 100%;
+  gap: 1px;
+}
+.logout-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999; 
+}
