@@ -18,8 +18,8 @@ if(isset($_POST["signup"])) {
     } else {
         $insertQuery = "INSERT INTO form_users (username, password) VALUES ('$username', '$password')";
         if(mysqli_query($conn, $insertQuery)) {
-            // Redirect to vacancy.php after successful signup
-            header("Location: vacancy.php");
+            // Redirect to login.php after successful signup
+            header("Location: form-login.php");
             exit();
         } else {
             $signupError = "Error occurred while signing up";
@@ -34,15 +34,23 @@ if(isset($_POST["signup"])) {
 <head>
     <meta charset="UTF-8">
     <title>Signup</title>
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-    <h2>Signup</h2>
-    <form action="form-signup.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <button type="submit" name="signup">Signup</button>
-    </form>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <?php
+        if(isset($_GET['error'])) {
+            echo '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
+        }
+        ?>
+        <form action="form-signup.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br><br>
+            <button type="submit" name="signup">Signup</button>
+        </form>
+    </div>
 </body>
 </html>

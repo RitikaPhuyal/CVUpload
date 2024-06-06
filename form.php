@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'connection.php';
 
 // Fetch job vacancies from the database
@@ -11,8 +12,50 @@ if (!$result) {
 $job_options = [];
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Store job options in an array
         $job_options[] = $row['job_title'];
+    }
+}
+
+// Check if job_title is passed as a parameter and set it as the selected job
+$selected_job = isset($_GET['job_title']) ? $_GET['job_title'] : '';
+
+// Ensure the user is logged in
+if (!isset($_SESSION['username'])) {
+    die("You must be logged in to access this page.");
+}
+
+$user_email = $_SESSION['username'];
+
+// Check if the logged-in user's email matches the form submission email
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $job = $_POST['job'];
+    $image = $_FILES['image']['name'];
+    $target = "img/" . basename($image);
+
+    if ($email != $user_email) {
+        die("Error: You can only submit the form with your logged-in email address.");
+    }
+
+    // Check if the user has already applied for the same job
+    $check_query = "SELECT * FROM tb_upload WHERE email = '$email' AND job_applied = '$job'";
+    $check_result = mysqli_query($conn, $check_query);
+
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "You have already applied for this job.";
+    } else {
+        // Insert form data into the database
+        $query = "INSERT INTO tb_upload (name, email, job_applied, image) VALUES ('$name', '$email', '$job', '$image')";
+        if (mysqli_query($conn, $query)) {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+                echo "Application submitted successfully.";
+            } else {
+                echo "Failed to upload image.";
+            }
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
     }
 }
 ?>
@@ -29,16 +72,18 @@ if (mysqli_num_rows($result) > 0) {
   <h1> Job Application <span class="title-small">(Form)</span></h1>
   <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
     <label for="name">Name:</label>
-    <input type="text" name="name" id="name" required value=""><br>
+    <input type="text" name="name" id="name" required><br>
 
     <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required value="" required><br>
+    <input type="email" name="email" id="email" value="<?php echo $user_email; ?>" readonly><br>
 
     <label for="job">Job:</label>
     <select name="job" id="job" required>
         <option value="">Select a job</option>
         <?php foreach ($job_options as $job): ?>
-            <option value="<?php echo $job; ?>"><?php echo $job; ?></option>
+            <option value="<?php echo $job; ?>" <?php echo ($job == $selected_job) ? 'selected' : ''; ?>>
+                <?php echo $job; ?>
+            </option>
         <?php endforeach; ?>
     </select><br><br>
 

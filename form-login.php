@@ -13,12 +13,12 @@ if(isset($_POST["login"])) {
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) == 1) {
-        // If a matching user is found, set session variable and redirect to job application form
+        // Set session variable and redirect to job application form
         $_SESSION["username"] = $username;
-        header("Location:vacancy.php");
+        header("Location: vacancy.php");
         exit();
     } else {
-        // If no matching user is found, redirect back to login with error message
+        // Redirect back to login with error message
         $loginError = "Invalid username or password";
         header("Location: login.php?error=" . urlencode($loginError));
         exit();
@@ -35,7 +35,7 @@ if(isset($_POST["login"])) {
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="vacancy.php" method="post">
+        <form action="form-login.php" method="post">
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required><br><br>
             <label for="password">Password:</label>
