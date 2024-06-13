@@ -19,9 +19,9 @@ if (isset($_POST["edit_job"])) {
     $job_id = $_POST["job_id"];
     $job_title = $_POST["job_title"];
     $job_description = $_POST["job_description"];
-    
+
     $query = "UPDATE job_vacancies SET job_title='$job_title', job_description='$job_description' WHERE id='$job_id'";
-    if(mysqli_query($conn, $query)) {
+    if (mysqli_query($conn, $query)) {
         $message = "Job updated successfully";
     } else {
         $message = "Error updating job";
@@ -34,10 +34,28 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
     die("Error: " . mysqli_error($conn));
 }
+
+if (isset($_POST["add_job"])) {
+    $jobTitle = $_POST["job_title"];
+    $jobDescription = $_POST["job_description"];
+
+    $query = "INSERT INTO job_vacancies (job_title, job_description) VALUES ('$jobTitle', '$jobDescription')";
+
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header("Location: post_vacancy.php");
+        exit();
+    } else {
+        header("Location: popst_vacancy.php?error=failed");
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Manage Job Vacancies</title>
@@ -48,14 +66,16 @@ if (!$result) {
         }
     </script>
 </head>
+
 <body>
     <div class="container">
         <h2>Add Job Vacancy</h2>
-        <form action="" method="post" onsubmit="showMessage('<?php echo $message; ?>')">
+        <form action="post_vacancy.php" method="post">
             <label for="job_title">Job Title:</label>
             <input type="text" name="job_title" id="job_title" required><br><br>
             <label for="job_description">Job Description:</label><br>
             <textarea name="job_description" id="job_description" rows="4" cols="50" required></textarea><br><br>
+            <input type="hidden" name="add_job">
             <button type="submit" name="add_job">Add Job</button>
         </form>
 
@@ -82,4 +102,5 @@ if (!$result) {
         </ul>
     </div>
 </body>
+
 </html>

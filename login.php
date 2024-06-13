@@ -3,19 +3,19 @@ session_start();
 require 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+  $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+  $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) == 1) {
-        $_SESSION['email'] = $email;
-        header("Location: data.php"); 
-        exit();
-    } else {
-        $loginError = "Invalid email or password";
-    }
+  if (mysqli_num_rows($result) == 1) {
+    $_SESSION['email'] = $email;
+    header("Location: data.php");
+    exit();
+  } else {
+    $loginError = "Invalid email or password";
+  }
 }
 
 mysqli_close($conn);
@@ -23,34 +23,26 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Employee Login Page</title>
   <link rel="stylesheet" href="./login.css">
 </head>
+
 <body>
   <div class="login-container">
-    <h2>Login</h2>
+    <h2>Admin Login</h2>
     <form id="loginForm" action="" method="post">
       <label>Email:</label>
-      <input
-        type="email"
-        name="email"
-        placeholder="Enter your email"
-        required
-      />
+      <input type="email" name="email" placeholder="Enter your email" required />
       <br />
       <label>Password:</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-        required
-      />
+      <input type="password" name="password" placeholder="Enter your password" required />
       <br />
-      <?php if(isset($loginError)): ?>
-      <p class="error"><?php echo $loginError; ?></p>
+      <?php if (isset($loginError)): ?>
+        <p class="error"><?php echo $loginError; ?></p>
       <?php endif; ?>
       <input type="submit" value="Login" />
     </form>
@@ -63,4 +55,5 @@ mysqli_close($conn);
     </script>
   </div>
 </body>
+
 </html>
