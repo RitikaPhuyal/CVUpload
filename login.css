@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e2bebe;
+    background-color: #665ab6 !important;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@ body {
     color: rgb(22, 20, 20);
   }
   .login-container {
-    background-color: #867d86;
+    background-color: #340334;
     padding: 20px;
     border-radius: 8px;
   }

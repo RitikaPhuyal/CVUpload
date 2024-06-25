@@ -18,7 +18,6 @@ if(isset($_POST["signup"])) {
     } else {
         $insertQuery = "INSERT INTO form_users (username, password) VALUES ('$username', '$password')";
         if(mysqli_query($conn, $insertQuery)) {
-            // Redirect to login.php after successful signup
             header("Location: form-login.php");
             exit();
         } else {

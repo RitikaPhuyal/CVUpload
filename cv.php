@@ -2,7 +2,7 @@
 session_start();
 require 'connection.php';
 
-// Function to send notifications
+
 function sendNotification($email, $message) {
     global $conn;
     $timestamp = date('Y-m-d H:i:s');
@@ -23,10 +23,10 @@ if (isset($_POST["dismiss"])) {
 
 if (isset($_POST["hire_submitted"])) {
     $email = $_POST["hire"];
-    $job_applied = $_POST["job"]; // Added to get the job applied for
+    $job_applied = $_POST["job"]; 
     $message = "You have been selected for $job_applied interview.";
     
-    // Sending notification to the applicant
+    
     if (sendNotification($email, $message)) {
         echo "<script>
                 if (confirm('Are you sure you want to hire this candidate?')) {
@@ -39,7 +39,7 @@ if (isset($_POST["hire_submitted"])) {
               </script>";
     }
 
-    // Redirect to prevent re-submission
+    
     header("Location: cv.php");
     exit();
 }

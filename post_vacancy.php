@@ -83,12 +83,12 @@ if (isset($_POST["add_job"])) {
         <ul>
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <li>
-                    <!-- Job name and description -->
+                    
                     <form action="" method="post">
                         <input type="hidden" name="job_id" value="<?php echo $row['id']; ?>">
                         <input type="text" name="job_title" value="<?php echo $row['job_title']; ?>" required><br>
                         <textarea name="job_description" rows="4" required><?php echo $row['job_description']; ?></textarea>
-                        <!-- Update and delete buttons -->
+                        
                         <div class="button-container">
                             <button type="submit" name="edit_job">Update</button>
                             <form action="" method="get">

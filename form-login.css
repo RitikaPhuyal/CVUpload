@@ -1,6 +1,7 @@
 body {
+
     font-family: Arial, sans-serif;
-    background-color: #e2bebe;
+    background-color:blue;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -13,7 +14,7 @@ body {
     background-color: #867d86;
     padding: 20px;
     border-radius: 8px;
-    text-align: center; /* Aligning content to center */
+    text-align: center; 
 }
 
 .login-container h2 {

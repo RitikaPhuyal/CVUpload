@@ -2,7 +2,6 @@
 session_start();
 require 'connection.php';
 
-// Fetch job vacancies from the database
 $query = "SELECT * FROM job_vacancies";
 $result = mysqli_query($conn, $query);
 if (!$result) {
@@ -14,7 +13,7 @@ if (mysqli_num_rows($result) > 0) {
     $job_listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
-// Fetch notifications for the logged-in user
+
 $notifications = [];
 if (isset($_SESSION['username'])) {
     $user_email = $_SESSION['username'];

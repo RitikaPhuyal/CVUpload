@@ -2,7 +2,7 @@
 session_start();
 require 'connection.php';
 
-// Fetch job vacancies from the database
+
 $query = "SELECT * FROM job_vacancies";
 $result = mysqli_query($conn, $query);
 if (!$result) {
@@ -16,17 +16,17 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-// Check if job_title is passed as a parameter and set it as the selected job
+
 $selected_job = isset($_GET['job_title']) ? $_GET['job_title'] : '';
 
-// Ensure the user is logged in
+
 if (!isset($_SESSION['username'])) {
     die("You must be logged in to access this page.");
 }
 
 $user_email = $_SESSION['username'];
 
-// Check if the logged-in user's email matches the form submission email
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -37,15 +37,14 @@ if (isset($_POST['submit'])) {
     if ($email != $user_email) {
         die("Error: You can only submit the form with your logged-in email address.");
     }
-
-    // Check if the user has already applied for the same job
+ 
     $check_query = "SELECT * FROM tb_upload WHERE email = '$email' AND job_applied = '$job'";
     $check_result = mysqli_query($conn, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
         echo "You have already applied for this job.";
     } else {
-        // Insert form data into the database
+        
         $query = "INSERT INTO tb_upload (name, email, job_applied, image) VALUES ('$name', '$email', '$job', '$image')";
         if (mysqli_query($conn, $query)) {
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {

@@ -13,12 +13,12 @@ if (isset($_POST["login"])) {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        // Set session variable and redirect to job application form
+        
         $_SESSION["username"] = $username;
         header("Location: vacancy.php");
         exit();
     } else {
-        // Redirect back to login with error message
+        
         $loginError = "Invalid username or password";
         header("Location: login.php?error=" . urlencode($loginError));
         exit();
